@@ -9,7 +9,15 @@
       "Bash(rm -f tsconfig.tsbuildinfo)",
       "Bash(npx eslint *)",
       "Bash(mkdir -p \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\.claude\")",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(powershell -Command \"Get-Process -Id 3164 | Select-Object Id,ProcessName,Path,StartTime\")",
+      "Bash(powershell -Command \"Get-CimInstance Win32_Process -Filter \\\\\"ProcessId=3164\\\\\" | Select-Object CommandLine\")",
+      "Bash(powershell -Command \"Stop-Process -Id 3164 -Force\")",
+      "Bash(grep -rli \"ticker\" \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\src\")",
+      "Bash(npm install *)",
+      "Bash(rm -f \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\src\\\\lib\\\\r2.ts\")",
+      "Bash(npm uninstall *)",
+      "Bash(git add *)"
     ]
   }
 }

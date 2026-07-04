@@ -165,28 +165,6 @@ export type Database = {
         }>;
         Relationships: [];
       };
-      ticker_items: {
-        Row: {
-          id: string;
-          content: string;
-          sort_order: number;
-          is_active: boolean;
-          created_at: string;
-        };
-        Insert: {
-          id?: string;
-          content: string;
-          sort_order?: number;
-          is_active?: boolean;
-          created_at?: string;
-        };
-        Update: Partial<{
-          content: string;
-          sort_order: number;
-          is_active: boolean;
-        }>;
-        Relationships: [];
-      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

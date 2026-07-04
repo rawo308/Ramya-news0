@@ -25,6 +25,6 @@ export async function updateSiteSettings(_prevState: { error?: string; ok?: bool
   if (error) return { error: error.message };
 
   revalidatePath("/admin/settings");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   return { ok: true };
 }

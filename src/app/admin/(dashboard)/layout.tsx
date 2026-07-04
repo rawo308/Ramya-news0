@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { LayoutDashboard, Newspaper, Tags, Radio, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Newspaper, Tags, Settings, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/is-configured";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,6 @@ const navItems = [
   { label: "لوحة التحكم", href: "/admin", icon: LayoutDashboard },
   { label: "المقالات", href: "/admin/articles", icon: Newspaper },
   { label: "الأقسام", href: "/admin/categories", icon: Tags },
-  { label: "الشريط العاجل", href: "/admin/ticker", icon: Radio },
   { label: "إعدادات الموقع", href: "/admin/settings", icon: Settings },
 ];
 

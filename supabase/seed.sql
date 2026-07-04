@@ -10,12 +10,6 @@ insert into public.categories (slug, label, description, sort_order) values
   ('culture',  'منوعات',      'فنون وثقافة ومنوعات',                           6),
   ('tech',     'تكنولوجيا',   'أحدث أخبار التقنية والابتكار',                  7);
 
-insert into public.ticker_items (content, sort_order) values
-  ('الحكومة تعقد جلسة طارئة لبحث الملف الاقتصادي صباح اليوم', 1),
-  ('ارتفاع أسعار صرف الذهب عالمياً مع تصاعد التوترات', 2),
-  ('المنتخب اللبناني يستعد لمواجهة حاسمة الأسبوع المقبل', 3),
-  ('اجتماع لوزراء الخارجية العرب لبحث آخر المستجدات الإقليمية', 4);
-
 -- Lead / hero story
 insert into public.articles
   (slug, title, excerpt, content, image_url, status, is_featured, featured_position, published_at)

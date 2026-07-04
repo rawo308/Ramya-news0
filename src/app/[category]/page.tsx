@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SiteHeader } from "@/components/site-header";
-import { BreakingTicker } from "@/components/breaking-ticker";
 import { MostRead } from "@/components/most-read";
 import { SiteFooter } from "@/components/site-footer";
 import { PaginationNav } from "@/components/pagination-nav";
@@ -42,7 +41,6 @@ export default async function CategoryPage({
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader categories={categories} siteName={settings.site_name} logoUrl={settings.logo_url} />
-      <BreakingTicker />
       <main className="flex-1">
         <div className="mx-auto max-w-6xl px-4 py-6">
           <div className="mb-3 flex items-center gap-1.5 text-sm text-muted-foreground">

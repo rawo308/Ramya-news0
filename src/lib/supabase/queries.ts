@@ -46,17 +46,6 @@ export async function getCategoryBySlug(slug: string) {
   return data;
 }
 
-export async function getTickerItems() {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("ticker_items")
-    .select("*")
-    .eq("is_active", true)
-    .order("sort_order", { ascending: true });
-  if (error) throw error;
-  return data;
-}
-
 export async function getFeaturedArticles() {
   const supabase = await createClient();
   const { data, error } = await supabase

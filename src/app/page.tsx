@@ -1,5 +1,4 @@
 import { SiteHeader } from "@/components/site-header";
-import { BreakingTicker } from "@/components/breaking-ticker";
 import { HeroSection } from "@/components/hero-section";
 import { LebanonSection } from "@/components/lebanon-section";
 import { CategorySection } from "@/components/category-section";
@@ -18,7 +17,6 @@ export default async function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader categories={categories} siteName={settings.site_name} logoUrl={settings.logo_url} />
-      <BreakingTicker />
       <main className="flex-1">
         <HeroSection />
         <LebanonSection />

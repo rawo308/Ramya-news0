@@ -1,6 +1,8 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
+import Image from "next/image";
+import { Loader2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,6 +42,30 @@ export function ArticleForm({
   action: (prevState: { error?: string } | undefined, formData: FormData) => Promise<{ error?: string } | undefined>;
 }) {
   const [state, formAction, pending] = useActionState(action, undefined);
+  const [imageUrl, setImageUrl] = useState(article?.image_url ?? "");
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+
+    setUploading(true);
+    setUploadError(null);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "فشل رفع الصورة");
+      setImageUrl(data.url);
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : "فشل رفع الصورة");
+    } finally {
+      setUploading(false);
+    }
+  }
 
   return (
     <form action={formAction} className="flex max-w-3xl flex-col gap-5">
@@ -80,13 +106,39 @@ export function ArticleForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="image_url">رابط الصورة</Label>
-          <Input
-            id="image_url"
-            name="image_url"
-            dir="ltr"
-            placeholder="https://res.cloudinary.com/..."
-            defaultValue={article?.image_url ?? ""}
-          />
+          <div className="flex gap-2">
+            <Input
+              id="image_url"
+              name="image_url"
+              dir="ltr"
+              placeholder="https://... أو ارفع صورة"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
+            <Button type="button" variant="outline" size="icon" disabled={uploading} asChild>
+              <label className="cursor-pointer">
+                {uploading ? <Loader2 className="size-4 animate-spin" /> : <Upload className="size-4" />}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  className="hidden"
+                  disabled={uploading}
+                  onChange={handleFileChange}
+                />
+              </label>
+            </Button>
+          </div>
+          {uploadError && <p className="text-sm text-destructive">{uploadError}</p>}
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt=""
+              width={160}
+              height={112}
+              unoptimized
+              className="mt-1 h-28 w-auto rounded-md border object-cover"
+            />
+          )}
         </div>
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="author">الكاتب</Label>
