@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(xargs grep -l \"Relationships\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\src\\\\app\\\\admin\\\\\\(dashboard\\)\\\\categories\\\\new\" \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\src\\\\app\\\\admin\\\\\\(dashboard\\)\\\\categories\\\\[id]\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\src\\\\app\\\\admin\\\\\\(dashboard\\)\\\\ticker\\\\new\" \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\src\\\\app\\\\admin\\\\\\(dashboard\\)\\\\ticker\\\\[id]\")",
+      "Bash(rm -rf \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\.next\")",
+      "Bash(rm -f tsconfig.tsbuildinfo)",
+      "Bash(npx eslint *)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\User\\\\Desktop\\\\RamiaNews\\\\.claude\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
