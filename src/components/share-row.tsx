@@ -5,10 +5,11 @@ import { Facebook, Link2, Check } from "lucide-react";
 import { FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 
 import { Button } from "@/components/ui/button";
+import { SITE_URL } from "@/lib/site";
 
 export function ShareRow({ title, path }: { title: string; path: string }) {
   const [copied, setCopied] = useState(false);
-  const url = `https://ramyahnews.com${path}`;
+  const url = `${SITE_URL}${path}`;
 
   const links = [
     {

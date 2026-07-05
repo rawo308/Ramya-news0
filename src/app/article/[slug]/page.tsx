@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ChevronLeft, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +21,41 @@ import {
   getSiteSettings,
 } from "@/lib/supabase/queries";
 import { formatRelativeTime, toDisplayArticle } from "@/lib/format";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+  if (!article) return {};
+
+  const description = article.excerpt || undefined;
+  const images = article.image_url ? [article.image_url] : undefined;
+  const path = `/article/${article.slug}`;
+
+  return {
+    title: article.title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      url: path,
+      title: article.title,
+      description,
+      images,
+      publishedTime: article.published_at ?? article.created_at,
+      authors: article.author ? [article.author] : undefined,
+    },
+    twitter: {
+      card: images ? "summary_large_image" : "summary",
+      title: article.title,
+      description,
+      images,
+    },
+  };
+}
 
 export default async function ArticlePage({
   params,

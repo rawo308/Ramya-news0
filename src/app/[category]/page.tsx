@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +18,27 @@ import {
   getSiteSettings,
 } from "@/lib/supabase/queries";
 import { toDisplayArticle } from "@/lib/format";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}): Promise<Metadata> {
+  const { category: categorySlug } = await params;
+  const category = await getCategoryBySlug(categorySlug);
+  if (!category) return {};
+
+  return {
+    title: category.label,
+    description: category.description || undefined,
+    alternates: { canonical: `/${category.slug}` },
+    openGraph: {
+      title: category.label,
+      description: category.description || undefined,
+      url: `/${category.slug}`,
+    },
+  };
+}
 
 export default async function CategoryPage({
   params,

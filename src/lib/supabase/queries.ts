@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 
 // Read-only helpers for the public site.
@@ -35,7 +36,7 @@ export async function getCategories() {
   return data;
 }
 
-export async function getCategoryBySlug(slug: string) {
+export const getCategoryBySlug = cache(async (slug: string) => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("categories")
@@ -44,7 +45,7 @@ export async function getCategoryBySlug(slug: string) {
     .maybeSingle();
   if (error) throw error;
   return data;
-}
+});
 
 export async function getFeaturedArticles() {
   const supabase = await createClient();
@@ -99,7 +100,7 @@ export async function getMostRead(limit = 5) {
   }));
 }
 
-export async function getArticleBySlug(slug: string) {
+export const getArticleBySlug = cache(async (slug: string) => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("articles")
@@ -111,6 +112,16 @@ export async function getArticleBySlug(slug: string) {
   if (!data) return null;
   const { article_categories, ...article } = data;
   return { ...article, categories: toCategories(article_categories) };
+});
+
+export async function getAllPublishedSlugs() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("articles")
+    .select("slug, updated_at")
+    .eq("status", "published");
+  if (error) throw error;
+  return data;
 }
 
 export async function getRelatedArticles(categorySlugs: string[], excludeId: string, limit = 4) {

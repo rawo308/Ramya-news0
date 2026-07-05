@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Kufi_Arabic, Noto_Sans_Arabic } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const notoKufiArabic = Noto_Kufi_Arabic({
@@ -14,9 +15,15 @@ const notoSansArabic = Noto_Sans_Arabic({
   weight: ["400", "500", "600", "700"],
 });
 
+const description = "آخر الأخبار العاجلة من لبنان والعالم أولاً بأول.";
+
 export const metadata: Metadata = {
-  title: "رامية نيوز | Ramyah News",
-  description: "آخر الأخبار العاجلة من لبنان والعالم أولاً بأول.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "رامية نيوز | Ramyah News",
+    template: "%s | رامية نيوز",
+  },
+  description,
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -26,6 +33,18 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "ar",
+    siteName: "رامية نيوز",
+    title: "رامية نيوز | Ramyah News",
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "رامية نيوز | Ramyah News",
+    description,
+  },
 };
 
 export const viewport: Viewport = {
