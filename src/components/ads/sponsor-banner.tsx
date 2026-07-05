@@ -25,7 +25,7 @@ export function SponsorBanner() {
             هذا الموقع برعاية <span style={{ color: BRAND_LIME }}>iDevelopIt</span>
             <span className="hidden font-normal text-white/70 sm:inline">
               {" "}
-              — نصمم مواقع ومتاجر إلكترونية تدر أرباحاً
+              — مواقع سريعة، تصميم احترافي، نتائج فعلية
             </span>
           </span>
         </Link>
