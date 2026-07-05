@@ -2,13 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-
-const aboutLinks = [
-  { label: "من نحن", href: "/about" },
-  { label: "فريق التحرير", href: "/team" },
-  { label: "اتصل بنا", href: "/contact" },
-  { label: "سياسة الخصوصية", href: "/privacy" },
-];
+import { idevelopitLink } from "@/lib/ads";
 
 type SiteSettings = {
   site_name: string;
@@ -24,13 +18,7 @@ type SiteSettings = {
   youtube_url: string;
 };
 
-export function SiteFooter({
-  categories,
-  settings,
-}: {
-  categories: { slug: string; label: string }[];
-  settings: SiteSettings;
-}) {
+export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const socialLinks = [
     { Icon: Facebook, href: settings.facebook_url },
     { Icon: Instagram, href: settings.instagram_url },
@@ -40,21 +28,23 @@ export function SiteFooter({
 
   return (
     <footer className="border-t bg-secondary/40">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="flex flex-col gap-3">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src={settings.logo_url || "/logo.jpg"}
-              alt={settings.site_name}
-              width={40}
-              height={40}
-              className="rounded-full object-cover"
-            />
-            <span className="font-heading text-lg font-bold">{settings.site_name}</span>
-          </Link>
-          {settings.footer_about && (
-            <p className="text-sm leading-relaxed text-muted-foreground">{settings.footer_about}</p>
-          )}
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-10 text-center">
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src={settings.logo_url || "/logo.jpg"}
+            alt={settings.site_name}
+            width={40}
+            height={40}
+            className="rounded-md object-cover"
+          />
+          <span className="font-heading text-lg font-bold">{settings.site_name}</span>
+        </Link>
+        {settings.footer_about && (
+          <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+            {settings.footer_about}
+          </p>
+        )}
+        {(settings.whatsapp_channel_url || socialLinks.length > 0) && (
           <div className="flex items-center gap-2">
             {settings.whatsapp_channel_url && (
               <Link
@@ -80,56 +70,31 @@ export function SiteFooter({
               </Link>
             ))}
           </div>
-        </div>
-
-        <div>
-          <h3 className="font-heading mb-3 text-sm font-bold">الأقسام</h3>
-          <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-            {categories.map((cat) => (
-              <li key={cat.slug}>
-                <Link href={`/${cat.slug}`} className="hover:text-primary">
-                  {cat.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-heading mb-3 text-sm font-bold">عن الموقع</h3>
-          <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-            {aboutLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="hover:text-primary">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-heading mb-3 text-sm font-bold">تواصل معنا</h3>
-          {settings.contact_address && (
-            <p className="text-sm text-muted-foreground">{settings.contact_address}</p>
-          )}
-          {settings.contact_phone && (
-            <p className="text-sm text-muted-foreground" dir="ltr">
-              {settings.contact_phone}
-            </p>
-          )}
-          {settings.contact_email && (
-            <p className="text-sm text-muted-foreground" dir="ltr">
-              {settings.contact_email}
-            </p>
-          )}
-        </div>
+        )}
       </div>
 
       <div className="border-t py-4">
-        <p className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {settings.site_name}. جميع الحقوق محفوظة.
-        </p>
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 text-center sm:flex-row sm:justify-between">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} {settings.site_name}. جميع الحقوق محفوظة.
+          </p>
+          <Link
+            href={idevelopitLink("footer", "credit_link")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <span>تصميم وتطوير</span>
+            <Image
+              src="/idevelopit-logo.png"
+              alt="iDevelopIt"
+              width={18}
+              height={18}
+              className="rounded-full"
+            />
+            <span className="font-semibold">iDevelopIt</span>
+          </Link>
+        </div>
       </div>
     </footer>
   );

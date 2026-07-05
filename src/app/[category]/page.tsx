@@ -7,6 +7,9 @@ import { SiteHeader } from "@/components/site-header";
 import { MostRead } from "@/components/most-read";
 import { SiteFooter } from "@/components/site-footer";
 import { PaginationNav } from "@/components/pagination-nav";
+import { AdBanner } from "@/components/ads/ad-banner";
+import { SponsorBanner } from "@/components/ads/sponsor-banner";
+import { ArticleLink } from "@/components/ads/article-link";
 import {
   getCategories,
   getCategoryArticles,
@@ -41,6 +44,7 @@ export default async function CategoryPage({
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader categories={categories} siteName={settings.site_name} logoUrl={settings.logo_url} />
+      <SponsorBanner />
       <main className="flex-1">
         <div className="mx-auto max-w-6xl px-4 py-6">
           <div className="mb-3 flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -58,7 +62,7 @@ export default async function CategoryPage({
 
         {featured && (
           <div className="mx-auto max-w-6xl px-4 pb-8">
-            <Link
+            <ArticleLink
               href={`/article/${featured.slug}`}
               className="group relative flex overflow-hidden rounded-xl"
             >
@@ -82,15 +86,17 @@ export default async function CategoryPage({
                   <span className="text-xs text-white/60">{featured.time}</span>
                 </div>
               </div>
-            </Link>
+            </ArticleLink>
           </div>
         )}
+
+        <AdBanner className="border-y bg-secondary/10 py-2" />
 
         <div className="mx-auto max-w-6xl px-4 pb-8">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="grid gap-6 sm:grid-cols-2 lg:col-span-2">
               {gridItems.map((story, i) => (
-                <Link
+                <ArticleLink
                   key={story.id}
                   href={`/article/${story.slug}`}
                   className="group flex flex-col gap-3"
@@ -117,7 +123,7 @@ export default async function CategoryPage({
                     </p>
                   )}
                   <span className="text-xs text-muted-foreground">{story.time}</span>
-                </Link>
+                </ArticleLink>
               ))}
               {stories.length === 0 && (
                 <p className="col-span-full py-8 text-center text-muted-foreground">
@@ -132,7 +138,7 @@ export default async function CategoryPage({
 
         <PaginationNav basePath={`/${categorySlug}`} page={page} totalPages={totalPages} />
       </main>
-      <SiteFooter categories={categories} settings={settings} />
+      <SiteFooter settings={settings} />
     </div>
   );
 }

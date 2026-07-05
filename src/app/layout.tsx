@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Noto_Kufi_Arabic, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
@@ -18,8 +18,18 @@ export const metadata: Metadata = {
   title: "رامية نيوز | Ramyah News",
   description: "آخر الأخبار العاجلة من لبنان والعالم أولاً بأول.",
   icons: {
-    icon: "/logo.jpg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#c8102e",
 };
 
 export default function RootLayout({

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { ChevronLeft, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,9 @@ import { CategorySection } from "@/components/category-section";
 import { ShareRow } from "@/components/share-row";
 import { WhatsappBand } from "@/components/whatsapp-band";
 import { SiteFooter } from "@/components/site-footer";
+import { AdBanner } from "@/components/ads/ad-banner";
+import { SponsorBanner } from "@/components/ads/sponsor-banner";
+import { NativeAdBar } from "@/components/ads/native-ad-bar";
 import {
   getArticleBySlug,
   getCategories,
@@ -50,6 +54,7 @@ export default async function ArticlePage({
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader categories={categories} siteName={settings.site_name} logoUrl={settings.logo_url} />
+      <SponsorBanner />
       <main className="flex-1">
         <div className="mx-auto max-w-3xl px-4 py-6">
           <div className="mb-3 flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -112,15 +117,18 @@ export default async function ArticlePage({
           <div className="grid gap-10 lg:grid-cols-3">
             <article className="max-w-3xl space-y-5 lg:col-span-2">
               {paragraphs.map((paragraph, i) => (
-                <p key={i} className="text-base leading-loose text-foreground/90">
-                  {paragraph}
-                </p>
+                <Fragment key={i}>
+                  <p className="text-base leading-loose text-foreground/90">{paragraph}</p>
+                  {i === 1 && paragraphs.length > 2 && <NativeAdBar />}
+                </Fragment>
               ))}
             </article>
 
             <MostRead />
           </div>
         </div>
+
+        <AdBanner className="border-y bg-secondary/10 py-2" />
 
         {related.length > 0 && (
           <div className="border-t bg-secondary/20">
@@ -134,7 +142,7 @@ export default async function ArticlePage({
 
         <WhatsappBand channelUrl={settings.whatsapp_channel_url} />
       </main>
-      <SiteFooter categories={categories} settings={settings} />
+      <SiteFooter settings={settings} />
     </div>
   );
 }

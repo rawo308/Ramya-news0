@@ -29,16 +29,8 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background">
-      <div className="hidden items-center justify-between border-b bg-secondary px-4 py-1.5 text-xs text-muted-foreground sm:flex">
+      <div className="hidden items-center border-b bg-secondary px-4 py-1.5 text-xs text-muted-foreground sm:flex">
         <span>الخميس، ٤ تموز ٢٠٢٦ | بيروت ٢٨°م</span>
-        <div className="flex items-center gap-4">
-          <Link href="/about" className="hover:text-foreground">
-            عن الموقع
-          </Link>
-          <Link href="/contact" className="hover:text-foreground">
-            اتصل بنا
-          </Link>
-        </div>
       </div>
 
       <div className="flex items-center justify-between gap-4 px-4 py-3">
@@ -79,7 +71,7 @@ export function SiteHeader({
               alt={siteName}
               width={44}
               height={44}
-              className="rounded-full object-cover"
+              className="rounded-md object-cover"
             />
             <span className="font-heading text-lg font-bold sm:text-xl">
               {siteName}

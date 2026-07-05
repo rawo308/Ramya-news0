@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Loader2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { slugify } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
@@ -45,6 +46,8 @@ export function ArticleForm({
   const [imageUrl, setImageUrl] = useState(article?.image_url ?? "");
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [slug, setSlug] = useState(article?.slug ?? "");
+  const [slugEdited, setSlugEdited] = useState(false);
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -72,7 +75,17 @@ export function ArticleForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="title">العنوان</Label>
-          <Input id="title" name="title" required defaultValue={article?.title} />
+          <Input
+            id="title"
+            name="title"
+            required
+            defaultValue={article?.title}
+            onChange={(e) => {
+              if (!article && !slugEdited) {
+                setSlug(slugify(e.target.value));
+              }
+            }}
+          />
         </div>
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="slug">الرابط (slug)</Label>
@@ -82,7 +95,11 @@ export function ArticleForm({
             required
             dir="ltr"
             placeholder="example-article-slug"
-            defaultValue={article?.slug}
+            value={slug}
+            onChange={(e) => {
+              setSlug(e.target.value);
+              setSlugEdited(true);
+            }}
           />
         </div>
       </div>

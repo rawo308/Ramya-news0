@@ -22,7 +22,7 @@ export default function AdminLoginPage() {
             alt="رامية نيوز"
             width={56}
             height={56}
-            className="rounded-full object-cover"
+            className="rounded-md object-cover"
           />
           <h1 className="font-heading text-lg font-bold">لوحة تحكم رامية نيوز</h1>
           <p className="text-sm text-muted-foreground">تسجيل دخول المسؤول</p>
