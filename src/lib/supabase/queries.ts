@@ -47,6 +47,37 @@ export const getCategoryBySlug = cache(async (slug: string) => {
   return data;
 });
 
+export async function getLatestArticles(limit = 5) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*, article_categories(categories(slug, label))")
+    .eq("status", "published")
+    .order("published_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return data.map(({ article_categories, ...article }) => ({
+    ...article,
+    categories: toCategories(article_categories),
+  }));
+}
+
+export async function searchArticles(query: string, limit = 5) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*, article_categories(categories(slug, label))")
+    .eq("status", "published")
+    .ilike("title", `%${query}%`)
+    .order("published_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return data.map(({ article_categories, ...article }) => ({
+    ...article,
+    categories: toCategories(article_categories),
+  }));
+}
+
 export async function getFeaturedArticles() {
   const supabase = await createClient();
   const { data, error } = await supabase

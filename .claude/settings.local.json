@@ -43,7 +43,11 @@
       "Bash(npm view *)",
       "Bash(node -e ' *)",
       "WebSearch",
-      "Bash(npm audit *)"
+      "Bash(npm audit *)",
+      "Bash(git commit *)",
+      "mcp__plugin_playwright_playwright__browser_type",
+      "Bash(rm -f mobile-search.png)",
+      "Bash(rm -rf .playwright-mcp)"
     ]
   }
 }
