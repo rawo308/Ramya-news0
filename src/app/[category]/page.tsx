@@ -8,7 +8,6 @@ import { SiteHeader } from "@/components/site-header";
 import { MostRead } from "@/components/most-read";
 import { SiteFooter } from "@/components/site-footer";
 import { PaginationNav } from "@/components/pagination-nav";
-import Link from "next/link";
 import { SponsorBanner } from "@/components/ads/sponsor-banner";
 import {
   getCategories,

@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
 import type { DisplayArticle } from "@/lib/format";
 
 export function CategorySection({

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MostRead } from "@/components/most-read";
-import Link from "next/link";
 import { getCategoryArticles } from "@/lib/supabase/queries";
 import { toDisplayArticle } from "@/lib/format";
 
