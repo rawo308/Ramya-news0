@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     title: "رامية نيوز | Ramyah News",
     description,
   },
+  other: {
+    "google-adsense-account": "ca-pub-5416586187160130",
+  },
 };
 
 export const viewport: Viewport = {
