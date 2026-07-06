@@ -11,9 +11,7 @@ import { CategorySection } from "@/components/category-section";
 import { ShareRow } from "@/components/share-row";
 import { WhatsappBand } from "@/components/whatsapp-band";
 import { SiteFooter } from "@/components/site-footer";
-import { AdBanner } from "@/components/ads/ad-banner";
 import { SponsorBanner } from "@/components/ads/sponsor-banner";
-import { NativeAdBar } from "@/components/ads/native-ad-bar";
 import {
   getArticleBySlug,
   getCategories,
@@ -162,7 +160,6 @@ export default async function ArticlePage({
                       </Fragment>
                     ))}
                   </p>
-                  {i === 1 && paragraphs.length > 2 && <NativeAdBar />}
                 </Fragment>
               ))}
             </article>
@@ -170,8 +167,6 @@ export default async function ArticlePage({
             <MostRead />
           </div>
         </div>
-
-        <AdBanner className="border-y bg-secondary/10 py-2" />
 
         {related.length > 0 && (
           <div className="border-t bg-secondary/20">

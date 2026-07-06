@@ -1,5 +1,5 @@
 import { TrendingUp } from "lucide-react";
-import { ArticleLink } from "@/components/ads/article-link";
+import Link from "next/link";
 import { getMostRead } from "@/lib/supabase/queries";
 import { toDisplayArticle } from "@/lib/format";
 
@@ -18,7 +18,7 @@ export async function MostRead() {
       <ol className="flex flex-col divide-y divide-border">
         {stories.map((story, i) => (
           <li key={story.id}>
-            <ArticleLink
+            <Link
               href={`/article/${story.slug}`}
               className="group flex items-start gap-3 py-3.5 first:pt-0"
             >
@@ -34,7 +34,7 @@ export async function MostRead() {
                 </h3>
                 <span className="text-xs text-muted-foreground">{story.time}</span>
               </div>
-            </ArticleLink>
+            </Link>
           </li>
         ))}
       </ol>

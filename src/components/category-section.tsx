@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { ArticleLink } from "@/components/ads/article-link";
+import Link from "next/link";
 import type { DisplayArticle } from "@/lib/format";
 
 export function CategorySection({
@@ -29,7 +29,7 @@ export function CategorySection({
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {stories.map((story) => (
-          <ArticleLink key={story.id} href={`/article/${story.slug}`} className="group flex flex-col gap-3">
+          <Link key={story.id} href={`/article/${story.slug}`} className="group flex flex-col gap-3">
             <div className="relative aspect-4/3 w-full overflow-hidden rounded-lg bg-muted">
               <Image
                 src={story.image}
@@ -51,7 +51,7 @@ export function CategorySection({
               </p>
             )}
             <span className="text-xs text-muted-foreground">{story.time}</span>
-          </ArticleLink>
+          </Link>
         ))}
       </div>
     </section>

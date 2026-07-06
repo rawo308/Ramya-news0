@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MostRead } from "@/components/most-read";
-import { ArticleLink } from "@/components/ads/article-link";
+import Link from "next/link";
 import { getCategoryArticles } from "@/lib/supabase/queries";
 import { toDisplayArticle } from "@/lib/format";
 
@@ -30,7 +30,7 @@ export async function LebanonSection() {
 
           <div className="grid gap-6 sm:grid-cols-2">
             {stories.map((story) => (
-              <ArticleLink
+              <Link
                 key={story.id}
                 href={`/article/${story.slug}`}
                 className="group flex flex-col gap-3"
@@ -54,7 +54,7 @@ export async function LebanonSection() {
                   {story.excerpt}
                 </p>
                 <span className="text-xs text-muted-foreground">{story.time}</span>
-              </ArticleLink>
+              </Link>
             ))}
           </div>
         </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { ArticleLink } from "@/components/ads/article-link";
+import Link from "next/link";
 import { getFeaturedArticles } from "@/lib/supabase/queries";
 import { toDisplayArticle } from "@/lib/format";
 
@@ -14,7 +14,7 @@ export async function HeroSection() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-8">
       <div className="grid gap-6 lg:grid-cols-3">
-        <ArticleLink
+        <Link
           href={`/article/${lead.slug}`}
           className="group relative flex flex-col overflow-hidden rounded-xl lg:col-span-2"
         >
@@ -41,11 +41,11 @@ export async function HeroSection() {
               <span className="text-xs text-white/60">{lead.time}</span>
             </div>
           </div>
-        </ArticleLink>
+        </Link>
 
         <div className="flex flex-col divide-y divide-border">
           {secondaryStories.map((story) => (
-            <ArticleLink
+            <Link
               key={story.id}
               href={`/article/${story.slug}`}
               className="group flex items-start gap-3 py-4 first:pt-0"
@@ -68,7 +68,7 @@ export async function HeroSection() {
                 </h3>
                 <span className="text-xs text-muted-foreground">{story.time}</span>
               </div>
-            </ArticleLink>
+            </Link>
           ))}
         </div>
       </div>
