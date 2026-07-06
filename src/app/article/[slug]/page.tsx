@@ -154,7 +154,14 @@ export default async function ArticlePage({
             <article className="max-w-3xl space-y-5 lg:col-span-2">
               {paragraphs.map((paragraph, i) => (
                 <Fragment key={i}>
-                  <p className="text-base leading-loose text-foreground/90">{paragraph}</p>
+                  <p className="text-base leading-loose text-foreground/90">
+                    {paragraph.split("\n").map((line, j) => (
+                      <Fragment key={j}>
+                        {j > 0 && <br />}
+                        {line}
+                      </Fragment>
+                    ))}
+                  </p>
                   {i === 1 && paragraphs.length > 2 && <NativeAdBar />}
                 </Fragment>
               ))}
