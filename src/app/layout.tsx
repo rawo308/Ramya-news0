@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Kufi_Arabic, Noto_Sans_Arabic } from "next/font/google";
+import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-HL5NJ4EW7F";
 
 const notoKufiArabic = Noto_Kufi_Arabic({
   variable: "--font-heading",
@@ -61,6 +64,19 @@ export default function RootLayout({
       <body
         className={`${notoKufiArabic.variable} ${notoSansArabic.variable} antialiased font-body`}
       >
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         {children}
       </body>
     </html>
