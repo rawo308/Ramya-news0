@@ -26,6 +26,12 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
     { Icon: Youtube, href: settings.youtube_url },
   ].filter((link) => link.href);
 
+  const footerLinks = [
+    { href: "/about", label: "من نحن" },
+    { href: "/privacy-policy", label: "سياسة الخصوصية" },
+    { href: "/contact", label: "اتصل بنا" },
+  ];
+
   return (
     <footer className="border-t bg-secondary/40">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-10 text-center">
@@ -44,6 +50,19 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             {settings.footer_about}
           </p>
         )}
+
+        <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-foreground/90">
+          {footerLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="transition-colors hover:text-primary"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
         {(settings.whatsapp_channel_url || socialLinks.length > 0) && (
           <div className="flex items-center gap-2">
             {settings.whatsapp_channel_url && (
