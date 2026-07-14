@@ -70,6 +70,9 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   const related = await getRelatedArticles(
+    article.title,
+    article.excerpt,
+    article.content,
     article.categories.map((c) => c.slug),
     article.id,
   );
