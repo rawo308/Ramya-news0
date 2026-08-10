@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Noto_Kufi_Arabic, Noto_Sans_Arabic } from "next/font/google";
 import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
+import { SmartLinkInterceptor } from "@/components/ads/smart-link-interceptor";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-HL5NJ4EW7F";
@@ -88,6 +89,7 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
+        <SmartLinkInterceptor />
         {children}
       </body>
     </html>

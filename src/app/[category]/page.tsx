@@ -8,7 +8,6 @@ import { SiteHeader } from "@/components/site-header";
 import { MostRead } from "@/components/most-read";
 import { SiteFooter } from "@/components/site-footer";
 import { PaginationNav } from "@/components/pagination-nav";
-import { SponsorBanner } from "@/components/ads/sponsor-banner";
 import {
   getCategories,
   getCategoryArticles,
@@ -64,7 +63,6 @@ export default async function CategoryPage({
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader categories={categories} siteName={settings.site_name} logoUrl={settings.logo_url} />
-      <SponsorBanner />
       <main className="flex-1">
         <div className="mx-auto max-w-6xl px-4 py-6">
           <div className="mb-3 flex items-center gap-1.5 text-sm text-muted-foreground">

@@ -11,7 +11,7 @@ import { CategorySection } from "@/components/category-section";
 import { ShareRow } from "@/components/share-row";
 import { WhatsappBand } from "@/components/whatsapp-band";
 import { SiteFooter } from "@/components/site-footer";
-import { SponsorBanner } from "@/components/ads/sponsor-banner";
+import { NativeAdBar } from "@/components/ads/native-ad-bar";
 import {
   getArticleBySlug,
   getCategories,
@@ -91,7 +91,6 @@ export default async function ArticlePage({
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader categories={categories} siteName={settings.site_name} logoUrl={settings.logo_url} />
-      <SponsorBanner />
       <main className="flex-1">
         <div className="mx-auto max-w-3xl px-4 py-6">
           <div className="mb-3 flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -165,6 +164,8 @@ export default async function ArticlePage({
                   </p>
                 </Fragment>
               ))}
+
+              <NativeAdBar />
             </article>
 
             <MostRead />

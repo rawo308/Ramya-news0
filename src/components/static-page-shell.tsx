@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { SponsorBanner } from "@/components/ads/sponsor-banner";
 import { getCategories, getSiteSettings } from "@/lib/supabase/queries";
 
 export async function StaticPageShell({
@@ -17,7 +16,6 @@ export async function StaticPageShell({
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader categories={categories} siteName={settings.site_name} logoUrl={settings.logo_url} />
-      <SponsorBanner />
       <main className="flex-1 bg-gradient-to-b from-background to-secondary/20">
         <div className="mx-auto max-w-4xl px-4 py-10 sm:py-16">
           <div className="rounded-2xl border border-border/70 bg-background/95 p-6 shadow-sm sm:p-8 lg:p-10">

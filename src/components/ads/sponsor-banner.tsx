@@ -25,7 +25,7 @@ export function SponsorBanner() {
             هذا الموقع برعاية <span style={{ color: BRAND_LIME }}>iDevelopIt</span>
             <span className="hidden font-normal text-white/70 sm:inline">
               {" "}
-              — مواقع سريعة، تصميم احترافي، نتائج فعلية
+              — مواقع سريعة، تصميم احترافية، نتائج فعلية
             </span>
           </span>
         </Link>

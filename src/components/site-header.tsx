@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchBox } from "@/components/search-box";
+import { SponsorBanner } from "@/components/ads/sponsor-banner";
 import {
   Sheet,
   SheetContent,
@@ -99,6 +100,8 @@ export function SiteHeader({
           ))}
         </ul>
       </nav>
+
+      <SponsorBanner />
     </header>
   );
 }
