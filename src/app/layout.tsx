@@ -89,6 +89,11 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
+        <Script
+          async
+          src="https://pl30810473.effectivecpmnetwork.com/11/a7/d4/11a7d4ec346ad6b06ae637b90eaaec2d.js"
+          strategy="afterInteractive"
+        />
         <SmartLinkInterceptor />
         {children}
       </body>
