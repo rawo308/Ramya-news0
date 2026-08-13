@@ -4,6 +4,8 @@ import { LebanonSection } from "@/components/lebanon-section";
 import { CategorySection } from "@/components/category-section";
 import { WhatsappBand } from "@/components/whatsapp-band";
 import { SiteFooter } from "@/components/site-footer";
+import { NativeAdBar } from "@/components/ads/native-ad-bar";
+import { AdBanner } from "@/components/ads/ad-banner";
 import { getCategories, getCategoryArticles, getSiteSettings } from "@/lib/supabase/queries";
 import { toDisplayArticle } from "@/lib/format";
 
@@ -20,6 +22,9 @@ export default async function Home() {
       <main className="flex-1">
         <HeroSection />
         <LebanonSection />
+        <div className="mx-auto max-w-6xl px-4 py-8">
+          <NativeAdBar />
+        </div>
         {sportsArticles.length > 0 && (
           <div className="border-t bg-secondary/20">
             <CategorySection
@@ -29,6 +34,9 @@ export default async function Home() {
             />
           </div>
         )}
+        <div className="mx-auto max-w-6xl px-4 py-6">
+          <AdBanner />
+        </div>
         <WhatsappBand channelUrl={settings.whatsapp_channel_url} />
       </main>
       <SiteFooter settings={settings} />
