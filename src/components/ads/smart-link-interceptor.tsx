@@ -1,13 +1,18 @@
 'use client';
 
 import { useEffect } from "react";
+import { useIsAdminPage } from "@/lib/use-is-admin-page";
 
 const SMART_LINK_URL = "https://www.effectivecpmnetwork.com/vpe6gx93k1?key=91e723d283c4f5b779d906ccc3e9fe3d";
 const STORAGE_KEY = "ramya-smart-link-last-hit";
 const SMART_LINK_COOLDOWN_MS = 6 * 60 * 60 * 1000;
 
 export function SmartLinkInterceptor() {
+  const isAdminPage = useIsAdminPage();
+
   useEffect(() => {
+    if (isAdminPage) return;
+
     const handleClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0) return;
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -44,7 +49,7 @@ export function SmartLinkInterceptor() {
 
     document.addEventListener("click", handleClick, true);
     return () => document.removeEventListener("click", handleClick, true);
-  }, []);
+  }, [isAdminPage]);
 
   return null;
 }

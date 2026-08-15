@@ -1,12 +1,11 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Script from "next/script";
+import { useIsAdminPage } from "@/lib/use-is-admin-page";
 
 // Social bar ad — must not load on admin pages.
 export function SocialBarScript() {
-  const pathname = usePathname();
-  if (pathname?.startsWith("/admin")) return null;
+  if (useIsAdminPage()) return null;
 
   return (
     <Script

@@ -4,6 +4,7 @@ import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
 import { SmartLinkInterceptor } from "@/components/ads/smart-link-interceptor";
 import { SocialBarScript } from "@/components/ads/social-bar-script";
+import { AdHeadScripts } from "@/components/ads/ad-head-scripts";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-HL5NJ4EW7F";
@@ -67,16 +68,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5416586187160130"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-        <script
-          async
-          src="https://pl30860750.effectivecpmnetwork.com/97/9a/5e/979a5e0b227fbede9ce721b7ac72b004.js"
-        />
+        <AdHeadScripts />
       </head>
       <body
         className={`${notoKufiArabic.variable} ${notoSansArabic.variable} antialiased font-body`}
