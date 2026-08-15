@@ -3,6 +3,7 @@ import { Noto_Kufi_Arabic, Noto_Sans_Arabic } from "next/font/google";
 import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
 import { SmartLinkInterceptor } from "@/components/ads/smart-link-interceptor";
+import { SocialBarScript } from "@/components/ads/social-bar-script";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-HL5NJ4EW7F";
@@ -72,6 +73,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        <script
+          async
+          src="https://pl30860750.effectivecpmnetwork.com/97/9a/5e/979a5e0b227fbede9ce721b7ac72b004.js"
+        />
       </head>
       <body
         className={`${notoKufiArabic.variable} ${notoSansArabic.variable} antialiased font-body`}
@@ -89,11 +94,7 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-        <Script
-          async
-          src="https://pl30810473.effectivecpmnetwork.com/11/a7/d4/11a7d4ec346ad6b06ae637b90eaaec2d.js"
-          strategy="afterInteractive"
-        />
+        <SocialBarScript />
         <SmartLinkInterceptor />
         {children}
       </body>

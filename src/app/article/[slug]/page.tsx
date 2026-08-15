@@ -11,7 +11,6 @@ import { CategorySection } from "@/components/category-section";
 import { ShareRow } from "@/components/share-row";
 import { WhatsappBand } from "@/components/whatsapp-band";
 import { SiteFooter } from "@/components/site-footer";
-import { AdBanner } from "@/components/ads/ad-banner";
 import { NativeAdBar } from "@/components/ads/native-ad-bar";
 import {
   getArticleBySlug,
@@ -163,7 +162,6 @@ export default async function ArticlePage({
                       </Fragment>
                     ))}
                   </p>
-                  {i === Math.ceil(paragraphs.length / 2) - 1 && <AdBanner />}
                 </Fragment>
               ))}
 

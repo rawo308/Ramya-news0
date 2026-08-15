@@ -5,7 +5,6 @@ import { CategorySection } from "@/components/category-section";
 import { WhatsappBand } from "@/components/whatsapp-band";
 import { SiteFooter } from "@/components/site-footer";
 import { NativeAdBar } from "@/components/ads/native-ad-bar";
-import { AdBanner } from "@/components/ads/ad-banner";
 import { getCategories, getCategoryArticles, getSiteSettings } from "@/lib/supabase/queries";
 import { toDisplayArticle } from "@/lib/format";
 
@@ -34,9 +33,6 @@ export default async function Home() {
             />
           </div>
         )}
-        <div className="mx-auto max-w-6xl px-4 py-6">
-          <AdBanner />
-        </div>
         <WhatsappBand channelUrl={settings.whatsapp_channel_url} />
       </main>
       <SiteFooter settings={settings} />
