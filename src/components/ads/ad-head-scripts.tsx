@@ -15,11 +15,6 @@ export function AdHeadScripts() {
         crossOrigin="anonymous"
         strategy="afterInteractive"
       />
-      <script
-        async
-        src="https://js.wpadmngr.com/static/adManager.js"
-        data-admpid="453235"
-      />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchBox } from "@/components/search-box";
 import { SponsorBanner } from "@/components/ads/sponsor-banner";
+import { BannerAd } from "@/components/ads/banner-ad";
 import {
   Sheet,
   SheetContent,
@@ -104,6 +105,7 @@ export function SiteHeader({
       </header>
 
       <SponsorBanner />
+      <BannerAd />
     </>
   );
 }
