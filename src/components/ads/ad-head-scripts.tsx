@@ -15,6 +15,10 @@ export function AdHeadScripts() {
         crossOrigin="anonymous"
         strategy="afterInteractive"
       />
+      <Script
+        src="https://pl30860750.effectivecpmnetwork.com/97/9a/5e/979a5e0b227fbede9ce721b7ac72b004.js"
+        strategy="afterInteractive"
+      />
     </>
   );
 }
